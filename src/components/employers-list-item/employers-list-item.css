@@ -59,6 +59,9 @@
     transform: translateX(0px);
 }
 
+/* После клика на печеньку у пользователя должен поменяться цвет. .list-group-item - это класс нашего li который
+всё в себя оборачивает, и как только у этого элемента появляется класс increase то .list-group-item-label и
+.list-group-item-input ОКРАШАТЬСЯ В ДРУГОЙ ЦВЕТ */
 .list-group-item.increase .list-group-item-label, .list-group-item.increase .list-group-item-input {
     color: #e09f3e;
 }

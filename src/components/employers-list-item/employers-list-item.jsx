@@ -2,11 +2,24 @@
 
 import './employers-list-item.css';
 
-const EmployerListItem = () => {
+/* Мы сюда передаем пропсы с employer-list 
+
+   Именно здесь должен добавлять класс increase
+   classNames - будет содержать все базовые классы li
+   И мы говорим что у нас есть переменная classNames в которую мы добавляем еще один класс, только важно что бы этот
+класс добавлялся через пробел что бы не он не притулялся к последнему классу который там уже был
+    Теперь у того элемента у которого increase стоит в true будет окрашен !*/
+const EmployerListItem = ({name, salary, increase}) => {
+
+    let classNames = "list-group-item d-flex justify-content-between"
+    if (increase) {
+        classNames += ' increase'
+    }
+
     return (
-        <li className="list-group-item d-flex justify-content-between">
-            <span className="list-group-item-label">Ruslan Postoiuk</span>
-            <input type="text" className="list-group-item-input" defaultValue="1000$"/>
+        <li className={classNames}>
+            <span className="list-group-item-label">{name}</span>
+            <input type="text" className="list-group-item-input" defaultValue={salary + "zl"} />
             <div className='d-flex justify-content-center align-items-center'>
                 <button type="button"
                     className="btn-cookie btn-sm ">
@@ -22,14 +35,5 @@ const EmployerListItem = () => {
         </li>
     )
 }
-/* defaultValue - это дополнительный аттрибут Реакта !
-    У нас есть элементы отдельные элементы списка (лист айтем). Что бы правильно работало СЕО и другие аспекты приложения
-необходимо использовать именно лист айтем.
-    В спене лежит имя пользователя
-    Инпут - поле значение заработно платы
-    Дальше див блока с кнопками
-    Первая кнопка - иконка с печенькой
-    Вторая кнопка - иконка удаление 
-    i - отдельна ионка со звездной что бы отображать пользователя который идет на повышение */
 
     export default EmployerListItem;
