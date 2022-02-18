@@ -1,26 +1,76 @@
 // По добавлению нового сотрудника
+import { Component } from 'react';
 
 import './employers-add-form.css'
 
-const EmployersAddForm = () => {
-    return(
-        <div className="app-add-form">
-            <h3>Dodaj nowego pracownika</h3>
-            <form className="add-form d-flex">
-                <input type="text" 
-                       className="form-control new-post-label"
-                       placeholder="Jak on ma na imię?"/>
-                <input type="number" 
-                       className="form-control new-post-label"
-                       placeholder="Wynagrodzenie w zł?"/>
+class EmployersAddForm extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            name: '',
+            salary: ''
+        }
+    }
 
-                <button type="submit"
-                        className="btn btn-outline-light">
-                            Dodać
-                </button>
-            </form>
-        </div>
-    )
+    /* Нам нужно написать один метод который будет подходить и к первому инпуту и ко второму
+       Когда событие onChange будет сробатывать - я хочу взять то что будет внутри этого инпута (это будет event.target.value)
+и записать это в нужный стейт
+    Расскрываем обычный объект так как мы не привязаны к предыдущему состоянию */
+    onValueChange = (e) => {
+        this.setState({
+            [e.target.name]: e.target.value // значение инпута
+            /*Будем работать с prop через атрибут name которые мы задали инпутам. Делаю я это для того что бы у нас эти названия(те эти
+аттрибуты и значение) совпадали с нашим state. В таком случае вместо prop пропишем e.target.name - ВЕДЬ ТАКИМ ВОТ ОБРАЗОМ МЫ МОЖЕМ 
+ДОСТУЧАТЬ ДО АТТРИБУТА name У ЭЛЕМЕНТА НА КОТОРОМ ПРОИСХОДИТ СОБЫТИЕ. 
+    Что бы не было ошибок нужно просто прописать в квадратных скобках. Потому что у нас есть один объекь е из него свойство таргет и 
+из таргет еще одно свойстве нейм.
+    Теперь при ведение чего-то в поле ДОБАВЬТЕ НОВОГО СОТРУДНИКА в консоли в components у нас изменяется salary и name*/
+
+    /* Теперь мы подходим к такому понятию как УПРАВЛЯЕМЫЕ КОМПОНЕНТЫ. Мы устанавливаем в инпуты атрибут value. И если мы хотим
+что бы Реакт Компонент рендерил форму и контролировал ее поведение в ответ на ввод пользователя, то мы должны добавлять атрибут
+value и в него помещать аттрибут стейта.
+    Зачем мы все это сделали ? Наш инпут запускает событие onChange => запускает метод onValueChange и здесь идет setState, который
+изменяет состояние и записывает состояние в объект this.state. Соотвественно setState у нас вызываем метод render() что бы перерендерить
+и если у нас value стоит в том ключе что мы используем в state, то в value у нас записывается АКТУАЛЬНОЕ ЗНАЧЕНИЕ ЭТОГО КОМПОНЕНТА.
+ТО-ЕСТЬ ЗНАЧЕНИЕ value ФОРМЫ ИНПУТА У НАС БУДУТ КОНТРОЛИРОВАТЬСЯ РЕАКТОМ В ЭТОМ СЛУЧАЕ И САМ ЭЛЕМЕНТ input БУДЕТ НАЗЫВАТЬСЯ
+УПРАВЛЯЕМЫМ КОМПОНЕНТОМ. То-есть то что мы вводим в этот инпут, контролируется state который здесь записывается в этот компонент.
+ЭТО ЗНАЧИТ ЧТО НА ВСЕ ИЗМЕНЕНИЯ НА СТРАНИЦЕ НАШ ИНТЕРФЕЙС БУДЕТ РЕАГИРОВАТЬ МГНОВЕННО.
+    Нужно понимать что те данные которые мы вводим в поле нашего инпута существуют только на страничке, те в дом дереве на самом сайте
+и если у нас нет такой привязки через стейт то ОНИ ТОЛЬКО ТАМ И БУДУТ ХРАНИТЬСЯ. То-есть если мы бы не задали value - то НА СКОЛЬКО
+Я ПРАВИЛЬНО ПОНЯЛ все бы работало так же само, только у нас бы не было доступа к этим вводам, а так как мы задали value, то мы получаем
+доступ к этим компонентам и они становятся УПРАВЛЯЕМЫЕ. Ваня сказал что управляемые компоненты всегда лучше неуправлемых
+    Единственный инпут не может быть управляемым этот инпут тайп файл где пользователь какой-то файл отправляет*/
+        })
+    }
+
+    render() {
+
+        const {name, salary} = this.state;
+        return(
+            <div className="app-add-form">
+                <h3>Dodaj nowego pracownika</h3>
+                <form className="add-form d-flex">
+                    <input type="text" 
+                           className="form-control new-post-label"
+                           placeholder="Jak on ma na imię?"
+                           name="name"
+                           value={name}
+                           onChange={this.onValueChange}/>
+                    <input type="number" 
+                           className="form-control new-post-label"
+                           placeholder="Wynagrodzenie w zł?"
+                           name="salary"
+                           value={salary}
+                           onChange={this.onValueChange}/>
+    
+                    <button type="submit"
+                            className="btn btn-outline-light">
+                                Dodać
+                    </button>
+                </form>
+            </div>
+        )
+    }
 }
 
 export default EmployersAddForm;
