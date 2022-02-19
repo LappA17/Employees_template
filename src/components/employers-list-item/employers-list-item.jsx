@@ -13,14 +13,9 @@ class EmployerListItem extends Component {
     }
 
     onIncrease = () => {
-        // Будем использовать коллбек, потому что мы зависим от предыдущего состояния
         this.setState(({increase}) => ({
             increase: !increase
-        })) /* Что мы здесь вообще написали? Наш коллбек принимает один аргумент {increase} и это стейт. Для того что бы
-не писать здесь state.increase вот в этом коде increase: !increase, очень часто берут и диструктуризируют его вот
-здесь его в аргументах {increase}. Те аргумент я обернул в круглые скобки и уже потом вытащил increase, дальше после
-=> мы ставим круглые скобки что бы не прописывать return и мы просто возвращаем объект из сетСтейта. А внутри объекта
-increase мы устанавливаем ПРОТИВОПОЛОЖНОЕ СВОЙСТО тому что было до этого! increase: !increase*/
+        }))
     }
 
     onRise = () => {
@@ -29,11 +24,12 @@ increase мы устанавливаем ПРОТИВОПОЛОЖНОЕ СВОЙ
         }))
     }
 
+    /* Мы в employers-list-item создаем функцию onDelete и можем ее здесь уже использовать. onDelete - эта та фция (тот проперти), который
+мы передавали ниже по иерархии. Теперь функция onDelete будет здесь работать, это значит что кнопки буду связанны на разных уровнях, те
+из корневого элемента const EmployersList на другой странице мы можем прокинуть проперти с фцией onDelete={() => }.
+    И если это работает между двумя этими компонентами то мы можем тоже самое сделать в app.jsx */
     render() {
-        const {name, salary} = this.props // мы обращаемся к свойству нашего класса
-
-/* Теперь здесь немного поменяем логику, потому что increase должен приходить не из пропсов, а должен определяться
-внутри самого компонента ! Изначально внутрение состояние равна false - то-есть мы думаем что премия не идет человеку */
+        const {name, salary, onDelete} = this.props
         const {increase, rise} = this.state; 
 
         let classNames = "list-group-item d-flex justify-content-between"
@@ -57,7 +53,8 @@ increase мы устанавливаем ПРОТИВОПОЛОЖНОЕ СВОЙ
                     </button>
 
                     <button type="button"
-                            className="btn-trash btn-sm ">
+                            className="btn-trash btn-sm "
+                            onClick={onDelete}>
                         <i className="fas fa-trash"></i>
                     </button>
                     <i className="fas fa-star"></i>
