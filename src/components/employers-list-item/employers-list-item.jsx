@@ -24,18 +24,7 @@ const EmployerListItem = (props) => {
         }))
     } */
 
-
-    /* onToggleIncrease заменяем вместо this.onIncrease  
-       Второй метод тоже копируем и заменяем this.onRise 
-    Теперь состояние у нас контролируются двумя методами onToggleIncrease, onToggleRise, которые находятся аж app.jsx
-И повышение с премией нам логичней отслеживать на верхнем уровне, в данных где массив data И ДВА ЭТИ МЕТОДА onRise
-и onIncrease, которые мы записывали в стейте, нам уже не нужны. Ведь раньше мы думали что будем отслеживать только
-на локальном уровне, но теперь изменили свое мнение !!!
-    НАМ БОЛЬШЕ НЕ НУЖЕН КЛАСС, МЕТОД РЕНДЕР, КОНСТРУКТОР, СТЕЙТЫ, ИМПОРТИРОВАТЬ КОМПОНЕНТЫ И ТД 
-    
-    increase и rise будут нам приходить из главного объекта из data в app.jsx*/
-    const {name, salary, onDelete, onToggleIncrease, onToggleRise, increase, rise} = props // без this, потому что это просто объект пропсов который нам приходит
-    // const {increase, rise} = this.state; не нужно больше
+    const {name, salary, onDelete, onToggleProp, increase, rise} = props
 
     let classNames = "list-group-item d-flex justify-content-between"
     if (increase) {
@@ -48,12 +37,16 @@ const EmployerListItem = (props) => {
     return (
         <li className={classNames}>
             <span className="list-group-item-label"
-            onClick={onToggleRise}>{name}</span>
+                onClick={onToggleProp}
+                data-toggle="rise">
+                {name}
+                </span>
             <input type="text" className="list-group-item-input" defaultValue={salary + "zl"} />
             <div className='d-flex justify-content-center align-items-center'>
                 <button type="button"
                     className="btn-cookie btn-sm "
-                    onClick={onToggleIncrease}>
+                    onClick={onToggleProp}
+                    data-toggle="increase">
                     <i className="fas fa-cookie"></i>
                 </button>
 
