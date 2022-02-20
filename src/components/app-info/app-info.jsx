@@ -2,12 +2,13 @@
 
 import './app-info.css'
 
-const AppInfo = () => {
+// И здесь из пропрсов достаем два этих пропса
+const AppInfo = ({increased, employees}) => {
     return (
         <div className="app-info">
             <h1>Rozliczanie pracowników w firmie CCIG</h1>
-            <h2>Łączna liczba pracowników:</h2>
-            <h2>Nagrodę otrzymają:</h2>
+            <h2>Łączna liczba pracowników: {employees}</h2>
+            <h2>Nagrodę otrzymają: {increased}</h2>
         </div>
     )
 }
