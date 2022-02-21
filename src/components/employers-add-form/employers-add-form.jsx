@@ -18,9 +18,10 @@ class EmployersAddForm extends Component {
         })
     }
 
-    // Этот код выучи и перепиши ! + обрати внимание где onSubmit
     onSubmit = (e) => {
         e.preventDefault();
+        // Можно еще и сообщения добавлять, подсветку, атрибуты minlength и тд.
+        if (this.state.name.length < 3 || !this.state.salary) return;
         this.props.onAdd(this.state.name, this.state.salary);
         this.setState({
             name: '',
