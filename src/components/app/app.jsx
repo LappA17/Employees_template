@@ -4,7 +4,7 @@ import AppInfo from '../app-info/app-info';
 import SearchPanel from '../search-panel/search-panel';
 import AppFilter from '../app-filter/app-filter';
 import EmployeesList from '../employees-list/employees-list';
-import EmployeesAddForm from '../employees-add-form/employees-add-form';
+import EmployeesAddForm from '../employees-add-form/employees-add-form'
 
 import './app.css';
 
@@ -13,9 +13,9 @@ class App extends Component {
         super(props);
         this.state = {
             data: [
-                {name: 'John C.', salary: 800, increase: false, rise: true, id: 1},
-                {name: 'Alex M.', salary: 3000, increase: true, rise: false, id: 2},
-                {name: 'Carl W.', salary: 5000, increase: false, rise: false, id: 3}
+                {name: 'Liza S.', salary: 2800, increase: false, rise: true, id: 1},
+                {name: 'Edward D.', salary: 10000, increase: true, rise: false, id: 2},
+                {name: 'Ruslan P.', salary: 6000, increase: false, rise: false, id: 3}
             ],
             term: '', 
             filter: 'all'
@@ -77,7 +77,7 @@ class App extends Component {
         switch (filter) {
             case 'rise':
                 return items.filter(item => item.rise);
-            case 'moreThen4000':
+            case 'moreThen1000':
                 return items.filter(item => item.salary > 4000);
             default:
                 return items
