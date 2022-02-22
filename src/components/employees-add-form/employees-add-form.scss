@@ -1,4 +1,4 @@
-@import '../../variables.scss';
+//@import '../../variables.scss'; ПОМНИ ЧТО ПЕРЕМЕННЫЕ НУЖНО ИМПОРТИРОВАТЬ ОТДЕЛЬНО
 
 .add-form {
     margin-top: 20px;
@@ -11,10 +11,10 @@
 .app-add-form {
     margin-top: 30px;
     padding: 25px;
-    background-color: #3d5a80;
+    background-color: rgb(207, 207, 23);
     border-radius: 4px;
     box-shadow: 15px 15px 30px rgba(0,0,0, .15);
-    color: $main-color;
+    color: #fff;
 }
 
 /* Так мы сократили такой код с помощью scss 

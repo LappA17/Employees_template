@@ -1,4 +1,4 @@
-@import './variables.scss';
+// @import './variables.scss'; Если нужно будет импортировать переменные в этот главный файл то так
 
 body {
     margin: 50px 0; /* Сделаем отступы 50px что бы не прилогало к верху страницы*/
@@ -7,7 +7,6 @@ body {
       sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: $main-color;
   }
   
   code {
