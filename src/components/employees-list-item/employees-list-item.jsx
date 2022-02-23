@@ -12,13 +12,6 @@ const EmployeesListItem = (props) => {
         classNames += ' like';
     }
 
-/*if (increase) {
-        classNames += ' increase';
-    }
-    if (rise) {
-        classNames += ' like';
-    }  Это у нас динамически сформированный класс */
-
     return (
         <li className={classNames}>
             <span  

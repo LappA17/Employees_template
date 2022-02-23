@@ -4,13 +4,12 @@ import { Component } from 'react';
 import './employees-add-form.scss'
 
 class EmployeesAddForm extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
+    /*Свойства которые будет у экземпляра теперь создаются без КОНСТРУКТОРА(И БЕЗ СУПЕРА).
+Очень важно наконец-то это понять что оно создается как свойство класса, а не как переменная(ты уже встречал такое и думал что это) */
+        state = {
             name: '',
             salary: ''
         }
-    }
 
     onValueChange = (e) => {
         this.setState({
@@ -28,6 +27,15 @@ class EmployeesAddForm extends Component {
             salary: ''
         })
     }
+
+    // Делаем статичный МЕТОД (static). Что бы метод стал статичным прописываем static. В самом низу этот метод вызываем !
+    static onLog = () => {
+        console.log('Hey')
+    }
+
+    //Так же можем так создавать СВОЙСТВА ! Когда для целого класса должно быть какое-то одно свойство
+    static logged = "you"; /* Свойства можно использовать что бы на весь класс была одна какая-то переменная, которую можно использовать,
+условно значение ширины и тому подобное */
 
     render() {
         const {name, salary} = this.state;
@@ -58,5 +66,8 @@ class EmployeesAddForm extends Component {
         )
     }
 }
+
+EmployeesAddForm.onLog()/* Я прямо на классе вызываю его метод ! */
+console.log(EmployeesAddForm.logged)
 
 export default EmployeesAddForm;
